@@ -1,12 +1,6 @@
 import app from "ags/gtk4/app"
 import { Astal, Gdk, Gtk } from "ags/gtk4"
-import { createState } from "ags"
-import { Clock } from "../modules/clock"
-
-const [statusText, setStatusText] = createState<string | null>(null)
-
-globalThis.showLoading = (text: string) => setStatusText(text)
-globalThis.clearLoading = () => setStatusText(null)
+import { IslandContent } from "./islandContent"
 
 export default function Bar(gdkmonitor: Gdk.Monitor) {
   const { TOP } = Astal.WindowAnchor
@@ -22,7 +16,7 @@ export default function Bar(gdkmonitor: Gdk.Monitor) {
       application={app}
     >
       <box class="island-content" halign={Gtk.Align.CENTER}>
-        <Clock />
+        <IslandContent />
       </box>
     </window>
   )
