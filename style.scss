@@ -1,0 +1,17 @@
+// https://gitlab.gnome.org/GNOME/gtk/-/blob/gtk-3-24/gtk/theme/Adwaita/_colors-public.scss
+$fg-color: #{"@theme_fg_color"};
+$bg-color: #{"@theme_bg_color"};
+
+window.Bar {
+  background: transparent;
+  color: white;
+  font-family: system-ui;
+  font-size: 12px;
+}
+
+.island-content {
+  background-color: #000000;
+  border-radius: 20px;
+  padding: 7px 15px;
+  margin-top: 8px;
+}
