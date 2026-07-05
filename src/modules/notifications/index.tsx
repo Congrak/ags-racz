@@ -1,3 +1,3 @@
 export const Notifications = () => {
-    return <>Notifications</>
+    return <label label="Notifications" />
 }

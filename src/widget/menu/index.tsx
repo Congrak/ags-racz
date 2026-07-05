@@ -1,3 +1,3 @@
 export const Menu = () => {
-    return <>Menu</>
+    return <label label="Menu" />
 }

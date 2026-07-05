@@ -1,4 +1,4 @@
-import { FormatTime } from "./globalTypes";
+import { FormatTime, totalWorkspace } from "./globalTypes";
 
 export const FORMAT_TIME: FormatTime = "%H:%M"
 
@@ -11,3 +11,4 @@ export enum IslandMode {
     Clock = "clock",
 }
 
+export const TOTAL_WORKSPACES: totalWorkspace = 5
