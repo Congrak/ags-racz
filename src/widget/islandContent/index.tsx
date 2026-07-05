@@ -4,8 +4,8 @@ import { Clock } from "../../modules/clock"
 import { Workspace } from "../../modules/workspace"
 import { Media } from "../../modules/media"
 import { Notifications } from "../../modules/notifications"
-import { islandMode } from "../../state"
 import { Menu } from "../menu"
+import { islandMode } from "../../state/island/selectors"
 
 export const IslandContent = () => {
     return (
@@ -14,7 +14,7 @@ export const IslandContent = () => {
                 switch (mode) {
                     case "idle":
                         return <Clock />
-                    case "desktop":
+                    case "workspace":
                         return <Workspace />
                     case "media":
                         return <Media />

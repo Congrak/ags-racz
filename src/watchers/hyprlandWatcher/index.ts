@@ -1,6 +1,6 @@
-import { setIslandMode } from "../../state"
 import { hyprland } from "../../service/hyprland"
+import { showTempMode } from "../../state/island/actions/persistentMode"
 
 hyprland!.connect("notify::focused-workspace", () => {
-    setIslandMode("desktop")
+    showTempMode("workspace", 3000)
 })
