@@ -6,6 +6,7 @@ import { Media } from "../../modules/media"
 import { Notifications } from "../../modules/notifications"
 import { Menu } from "../menu"
 import { islandMode } from "../../state/island/selectors"
+import { Launcher } from "../../modules/launcher"
 
 export const IslandContent = () => {
     return (
@@ -22,6 +23,8 @@ export const IslandContent = () => {
                         return <Menu />
                     case "notifications":
                         return <Notifications />
+                    case "launcher":
+                        return <Launcher />
                 }
             }}
         </With>

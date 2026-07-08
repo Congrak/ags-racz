@@ -14,4 +14,16 @@ window.Bar {
   border-radius: 20px;
   padding: 7px 15px;
   margin-top: 8px;
+  transition: all 200ms ease-out;
+
+  &--idle {
+    min-height: 28px;
+    padding: 7px 15px;
+  }
+
+  &--launcher {
+    min-height: 220px;
+    padding: 14px 18px;
+  }
+
 }
