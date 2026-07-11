@@ -10,8 +10,8 @@ export const Launcher = () => {
 
     const filtered = createComputed(() => {
         const q = query().toLowerCase()
-        if (!q) return apps.slice(0, 5)
-        return apps.filter((a) => a.name.toLowerCase().includes(q)).slice(0, 5)
+        const base = q ? apps.filter((a) => a.name.toLowerCase().includes(q)) : apps.slice()
+        return base.sort((a, b) => a.name.localeCompare(b.name)).slice(0, 5)
     })
 
     return (
