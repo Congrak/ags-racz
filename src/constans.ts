@@ -12,3 +12,19 @@ export enum IslandMode {
 }
 
 export const TOTAL_WORKSPACES: totalWorkspace = 5
+
+export const BLACKLISTED_IDS = new Set([
+    "qv4l2.desktop",
+    "qvidcap.desktop",
+    "bssh.desktop",
+    "bvnc.desktop",
+    "avahi-discover.desktop",
+    "nvidia-settings.desktop",
+]);
+
+export const SYSTEM_ONLY_CATEGORIES = new Set([
+    "System", "Settings", "Utility", "Network",
+    "ConsoleOnly", "Building", "Debugger", "Profiling",
+    "Filesystem", "Monitor", "Security",
+    "PackageManager", "TrayIcon"
+]);

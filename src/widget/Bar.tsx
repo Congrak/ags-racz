@@ -14,15 +14,13 @@ export default function Bar(gdkmonitor: Gdk.Monitor) {
       gdkmonitor={gdkmonitor}
       exclusivity={Astal.Exclusivity.PARTIAL}
       anchor={TOP}
+      hexpand={false}
+      vexpand={false}
       application={app}
-      $={(self) => {
-        islandMode.subscribe(() => {
-          self.queue_resize()
-          self.queue_allocate()
-        })
-      }}
+      keymode={Astal.Keymode.ON_DEMAND}
+
     >
-      <box class="island-content" halign={Gtk.Align.CENTER}>
+      <box class="island-content" halign={Gtk.Align.CENTER} valign={Gtk.Align.START}>
         <IslandContent />
       </box>
     </window>
