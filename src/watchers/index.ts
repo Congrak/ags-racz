@@ -1,1 +1,2 @@
 import "./hyprlandWatcher"
+import "./mediaWatcher"

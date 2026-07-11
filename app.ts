@@ -3,7 +3,6 @@ import style from "./style.scss"
 import Bar from "./src/widget/Bar"
 import "./src/watchers"
 import { setPersistentMode } from "./src/state/island/actions/persistentMode"
-import { execAsync } from "ags/process"
 
 app.start({
   css: style,
