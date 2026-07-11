@@ -1,6 +1,5 @@
 import { createState, createComputed, With } from "ags"
 import { Gtk } from "ags/gtk4"
-import Gio from "gi://Gio"
 import { setPersistentMode } from "../../state/island/actions/persistentMode"
 import { apps } from "../../utils/Apps"
 import { launch } from "../../utils/launch"
