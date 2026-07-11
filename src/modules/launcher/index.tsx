@@ -20,8 +20,6 @@ export const Launcher = () => {
             <entry
                 placeholderText="Which app do you need?"
                 onNotifyText={(self) => setQuery(self.text || "")}
-                // onMap={(self) => self.grab_focus()}
-
                 onMap={(self) => {
                     GLib.timeout_add(GLib.PRIORITY_DEFAULT, 100, () => {
                         self.grab_focus()
