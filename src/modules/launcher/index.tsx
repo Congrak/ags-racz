@@ -20,6 +20,7 @@ export const Launcher = () => {
                 placeholderText="Which app do you need?"
                 onNotifyText={(self) => setQuery(self.text || "")}
                 onMap={(self) => self.grab_focus()}
+                onActivate={() => setPersistentMode("idle")}
             />
             <With value={filtered}>
                 {(list) => (
