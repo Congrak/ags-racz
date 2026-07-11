@@ -4,6 +4,7 @@ import Gio from "gi://Gio"
 import { setPersistentMode } from "../../state/island/actions/persistentMode"
 import { apps } from "../../utils/Apps"
 import { launch } from "../../utils/launch"
+import GLib from "gi://GLib?version=2.0"
 
 export const Launcher = () => {
     const [query, setQuery] = createState("")
@@ -19,7 +20,14 @@ export const Launcher = () => {
             <entry
                 placeholderText="Which app do you need?"
                 onNotifyText={(self) => setQuery(self.text || "")}
-                onMap={(self) => self.grab_focus()}
+                // onMap={(self) => self.grab_focus()}
+
+                onMap={(self) => {
+                    GLib.timeout_add(GLib.PRIORITY_DEFAULT, 100, () => {
+                        self.grab_focus()
+                        return GLib.SOURCE_REMOVE
+                    })
+                }}
                 onActivate={() => setPersistentMode("idle")}
             />
             <With value={filtered}>
