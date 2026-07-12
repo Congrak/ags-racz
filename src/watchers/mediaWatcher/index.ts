@@ -1,31 +1,26 @@
 import Mpris from "gi://AstalMpris"
-import { setPersistentMode } from "../../state/island/actions/persistentMode"
-import { islandMode } from "../../state/island/selectors"
+import { checkPlayback } from "../../utils/checkPlayback"
+import GLib from "gi://GLib?version=2.0"
 
 const mpris = Mpris.get_default()
+const connectedPlayers = new Set<Mpris.Player>()
 
-function checkPlayback() {
-    const players = mpris.get_players()
-    const playing = players.find(
-        (p) => p.playback_status === Mpris.PlaybackStatus.PLAYING
-    )
-
-    if (playing && islandMode() === "idle") {
-        console.log("Media playing, setting persistent mode to media")
-        setPersistentMode("media")
-    }
-
-    if (!playing && islandMode() === "media") {
-        console.log("No media playing, setting persistent mode to idle")
-        setPersistentMode("idle")
-    }
+function watchPlayer(player: Mpris.Player) {
+    if (connectedPlayers.has(player)) return
+    connectedPlayers.add(player)
+    player.connect("notify::playback-status", () => checkPlayback(mpris))
 }
 
 mpris.connect("player-added", (_mpris, player) => {
-    player.connect("notify::playback-status", checkPlayback)
-    checkPlayback()
+    watchPlayer(player)
+    checkPlayback(mpris)
 })
 
 mpris.connect("player-closed", () => {
-    checkPlayback()
+    connectedPlayers.clear()
+    GLib.timeout_add(GLib.PRIORITY_DEFAULT, 300, () => {
+        mpris.get_players().forEach(watchPlayer)
+        checkPlayback(mpris)
+        return GLib.SOURCE_REMOVE
+    })
 })

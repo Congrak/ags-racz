@@ -18,7 +18,13 @@ export default function Bar(gdkmonitor: Gdk.Monitor) {
       vexpand={false}
       application={app}
       keymode={Astal.Keymode.ON_DEMAND}
-
+      $={(self) => {
+        islandMode.subscribe(() => {
+          self.set_default_size(1, 1)
+          self.queue_resize()
+          self.queue_allocate()
+        })
+      }}
     >
       <box class="island-content" halign={Gtk.Align.CENTER} valign={Gtk.Align.START}>
         <IslandContent />
