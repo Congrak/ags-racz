@@ -5,7 +5,9 @@ import type { MediaManagerProps } from "../../../globalTypes"
 export const MediaManager = ({ p }: MediaManagerProps) => {
     return (
         <box orientation={Gtk.Orientation.HORIZONTAL} class="media-expanded">
-            <image file={p.art_url} class="media-art" />
+            <box class="media-art-wrapper" overflow={Gtk.Overflow.HIDDEN}>
+                <image file={p.cover_art || p.art_url} pixelSize={32} />
+            </box>
             <box orientation={Gtk.Orientation.VERTICAL}>
                 <label
                     label={p.title || "Unknown"}

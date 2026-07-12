@@ -2,7 +2,6 @@ import { createState, createComputed, With } from "ags"
 import { Gtk } from "ags/gtk4"
 import GLib from "gi://GLib"
 import Mpris from "gi://AstalMpris"
-import { visualizerValues } from "../../state/island/actions/visualizerValues"
 import { IdleBars } from "./idleBars"
 import { MediaManager } from "./mediaManager"
 
@@ -13,7 +12,10 @@ export const Media = () => {
 
     const player = createComputed(() => {
         const players = mpris.get_players()
-        return players.length > 0 ? players[0] : null
+        if (players.length === 0) return null
+
+        const playing = players.find((p) => p.playback_status === Mpris.PlaybackStatus.PLAYING)
+        return playing ?? players[0]
     })
 
     return (
@@ -45,11 +47,12 @@ export const Media = () => {
                         <box class="media-content">
                             <With value={isHovered}>
                                 {(hovered) =>
-                                    hovered ? (
-                                        <MediaManager p={p} />
-                                    ) : (
-                                        <IdleBars />
-                                    )
+                                    hovered ?
+                                        (
+                                            <MediaManager p={p} />
+                                        ) : (
+                                            <IdleBars />
+                                        )
                                 }
                             </With>
                         </box>
