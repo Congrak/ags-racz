@@ -3,6 +3,8 @@ import { Gtk } from "ags/gtk4"
 import GLib from "gi://GLib"
 import Mpris from "gi://AstalMpris"
 import { visualizerValues } from "../../state/island/actions/visualizerValues"
+import { IdleBars } from "./idleBars"
+import { MediaManager } from "./mediaManager"
 
 
 export const Media = () => {
@@ -44,41 +46,9 @@ export const Media = () => {
                             <With value={isHovered}>
                                 {(hovered) =>
                                     hovered ? (
-                                        <box orientation={Gtk.Orientation.HORIZONTAL} class="media-expanded">
-                                            <image file={p.art_url} class="media-art" />
-                                            <box orientation={Gtk.Orientation.VERTICAL}>
-                                                <label
-                                                    label={p.title || "Unknown"}
-                                                    halign={Gtk.Align.START}
-                                                    class="media-title"
-                                                />
-                                                <label
-                                                    label={p.artist || "Unknown"}
-                                                    halign={Gtk.Align.START}
-                                                    class="media-artist"
-                                                />
-                                            </box>
-                                            <button onClicked={() => p.play_pause()}>
-                                                <label
-                                                    label={
-                                                        p.playback_status === Mpris.PlaybackStatus.PLAYING
-                                                            ? "⏸"
-                                                            : "▶"
-                                                    }
-                                                />
-                                            </button>
-                                        </box>
+                                        <MediaManager p={p} />
                                     ) : (
-                                        <box orientation={Gtk.Orientation.HORIZONTAL} class="visualizer" valign={Gtk.Align.CENTER}>
-                                            {visualizerValues().map((v) => (
-                                                <box
-                                                    class="bar"
-                                                    heightRequest={Math.max(2, v * 12)}
-                                                    valign={Gtk.Align.END}
-                                                    vexpand={false}
-                                                />
-                                            ))}
-                                        </box>
+                                        <IdleBars />
                                     )
                                 }
                             </With>
