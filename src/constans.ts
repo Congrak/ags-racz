@@ -28,3 +28,6 @@ export const SYSTEM_ONLY_CATEGORIES = new Set([
     "Filesystem", "Monitor", "Security",
     "PackageManager", "TrayIcon"
 ]);
+
+export const WEATHER_API_URL: string = "https://api.open-meteo.com/v1/forecast"
+export const GEOLOCATION_API_URL: string = "http://ip-api.com/json/"
