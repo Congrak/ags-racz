@@ -1,18 +1,24 @@
+import { With } from "ags"
 import { useHover } from "../../hooks/useHover"
-import { With } from "gnim"
 import { IdleClock } from "./idleClock"
-import { Calendar } from "./calendar"
-import { getWeather } from "../../service/openMateo"
+import { CalendarWeather } from "./calendarWeather"
+import { weatherData } from "../../state/island/actions/weatherData"
+
 
 export const Clock = () => {
     const { isHovered, bind } = useHover()
 
-    getWeather()
-
     return (
         <box class="clock-wrapper" $={bind}>
             <With value={isHovered}>
-                {(hovered) => (hovered ? <Calendar /> : <IdleClock />)}
+                {(hovered) => {
+                    if (!hovered) return <IdleClock />
+
+                    const weather = weatherData()
+                    if (!weather) return <IdleClock />
+
+                    return <CalendarWeather temperature={weather.temperature} weatherCode={weather.weatherCode} />
+                }}
             </With>
         </box>
     )

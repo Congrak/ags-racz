@@ -31,6 +31,11 @@ window.Bar {
     min-height: 44px;
     padding: 10px 16px;
   }
+
+  &--clock-hovered {
+    min-height: 170px;
+    padding: 14px 18px;
+  }
 }
 
 .visualizer {
@@ -79,5 +84,66 @@ window.Bar {
       background-color: rgba(255, 255, 255, 0.1);
       border-radius: 50%;
     }
+  }
+}
+
+.calendar-weather {
+  padding: 14px 18px;
+  min-width: 260px;
+
+  .cw-date {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.55);
+  }
+
+  .cw-time {
+    font-size: 20px;
+    font-weight: 500;
+    color: white;
+  }
+
+  .cw-icon {
+    margin-right: 6px;
+  }
+
+  .cw-temp {
+    font-size: 15px;
+    font-weight: 500;
+    color: white;
+  }
+
+  .cw-condition {
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .cw-divider {
+    min-height: 1px;
+    background-color: rgba(255, 255, 255, 0.15);
+    margin: 12px 0;
+  }
+
+  .cw-week {
+    margin-top: 4px;
+  }
+
+  .cw-day-label {
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.4);
+  }
+
+  .cw-day-number {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.7);
+    margin-top: 4px;
+    min-width: 20px;
+    min-height: 20px;
+  }
+
+  .cw-day-today {
+    background-color: white;
+    color: black;
+    font-weight: 500;
+    border-radius: 50%;
   }
 }
