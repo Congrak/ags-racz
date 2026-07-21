@@ -1,7 +1,19 @@
-import { createPoll } from "ags/time"
-import { getTime } from "../../utils/getTIme"
+import { useHover } from "../../hooks/useHover"
+import { With } from "gnim"
+import { IdleClock } from "./idleClock"
+import { Calendar } from "./calendar"
+import { getWeather } from "../../service/openMateo"
 
 export const Clock = () => {
-    const time = createPoll(getTime(), 1000, getTime)
-    return <label label={time} />
+    const { isHovered, bind } = useHover()
+
+    getWeather()
+
+    return (
+        <box class="clock-wrapper" $={bind}>
+            <With value={isHovered}>
+                {(hovered) => (hovered ? <Calendar /> : <IdleClock />)}
+            </With>
+        </box>
+    )
 }
