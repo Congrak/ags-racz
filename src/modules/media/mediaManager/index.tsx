@@ -8,7 +8,7 @@ export const MediaManager = ({ p }: MediaManagerProps) => {
             <box class="media-art-wrapper" overflow={Gtk.Overflow.HIDDEN}>
                 <image file={p.cover_art || p.art_url} pixelSize={32} />
             </box>
-            <box orientation={Gtk.Orientation.VERTICAL}>
+            <box orientation={Gtk.Orientation.VERTICAL} valign={Gtk.Align.CENTER}>
                 <label
                     label={p.title || "Unknown"}
                     halign={Gtk.Align.START}

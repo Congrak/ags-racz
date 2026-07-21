@@ -1,14 +1,13 @@
-import { createState, createComputed, With } from "ags"
-import { Gtk } from "ags/gtk4"
-import GLib from "gi://GLib"
+import { createComputed, With } from "ags"
 import Mpris from "gi://AstalMpris"
 import { IdleBars } from "./idleBars"
 import { MediaManager } from "./mediaManager"
+import { useHover } from "../../hooks/useHover"
 
 
 export const Media = () => {
     const mpris = Mpris.get_default()
-    const [isHovered, setIsHovered] = createState(false)
+    const { isHovered, bind } = useHover()
 
     const player = createComputed(() => {
         const players = mpris.get_players()
@@ -21,22 +20,7 @@ export const Media = () => {
     return (
         <box
             class="media-wrapper"
-            $={(self) => {
-                const motion = new Gtk.EventControllerMotion()
-                motion.connect("enter", () => {
-                    GLib.idle_add(GLib.PRIORITY_DEFAULT, () => {
-                        setIsHovered(true)
-                        return GLib.SOURCE_REMOVE
-                    })
-                })
-                motion.connect("leave", () => {
-                    GLib.idle_add(GLib.PRIORITY_DEFAULT, () => {
-                        setIsHovered(false)
-                        return GLib.SOURCE_REMOVE
-                    })
-                })
-                self.add_controller(motion)
-            }}
+            $={bind}
         >
             <With value={player}>
                 {(p) => {
